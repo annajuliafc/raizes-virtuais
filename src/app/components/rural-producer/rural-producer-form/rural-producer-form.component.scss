@@ -1,0 +1,11 @@
+.agroList {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: space-around;
+}
+
+button[type="submit"] {
+  background: #6B6B6B;
+  color: white;
+}

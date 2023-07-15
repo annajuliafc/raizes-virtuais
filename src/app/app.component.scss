@@ -1,0 +1,35 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  height: 15vh;
+  align-items: center;
+  padding: 64px 0 64px 32px;
+
+  a {
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 800;
+    letter-spacing: 0;
+    color: #20504F;
+    display: flex;
+    font-size: 32px;
+
+    mat-icon {
+      font-size: 32px;
+      width: 32px;
+      height: 32px;
+      margin-right: 8px;
+      color: #367D7A;
+    }
+  }
+}
+
+main {
+  padding: 0 32px;
+
+  .tabMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

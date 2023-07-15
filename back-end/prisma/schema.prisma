@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Farmer {
+  id             Int      @id @default(autoincrement())
+  document       String
+  name           String
+  city           String
+  state          String
+  farmName       String
+  farmTotalArea  Int
+  arableArea     Int
+  vegetationArea Int
+  plantedCrops   Crop     @relation(fields: [cropId], references: [id],  onUpdate: Cascade, onDelete: Cascade)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @default(now()) @updatedAt
+  cropId         Int
+
+  @@map("farmers")
+}
+
+model Crop {
+  id        Int      @id @default(autoincrement())
+  sugarCane Boolean?
+  soy       Boolean?
+  corn      Boolean?
+  cotton    Boolean?
+  coffee    Boolean?
+  Farmer    Farmer[]
+
+  @@map("crops")
+}

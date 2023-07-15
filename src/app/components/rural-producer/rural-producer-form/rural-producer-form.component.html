@@ -1,0 +1,77 @@
+<p-toast></p-toast>
+<form (ngSubmit)="ruralProducerSubmit()" [formGroup]="ruralProducerForm" #formDir="ngForm" areaExceededValidation>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col-3">
+      <mat-label>CPF / CNPJ</mat-label>
+      <input matInput placeholder="Ex: 123.456.789-10 / 12.345.678/0001-91" formControlName="document" cpfCnpjValidation
+        (blur)="formatCpfCnpj()">
+      <mat-error *ngIf="getControl('document').errors?.['required']">O CPF ou CNPJ é obrigatório!</mat-error>
+      <mat-error *ngIf="getControl('document').errors?.['cpfCnpjValidation']">
+        CPF/CNPJ inválido.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col">
+      <mat-label>Nome do produtor</mat-label>
+      <input matInput placeholder="Anna Julia Freitas" formControlName="producerName">
+      <mat-error *ngIf="getControl('producerName').errors?.['required']">O nome do produtor é obrigatório!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col">
+      <mat-label>Nome da Fazenda</mat-label>
+      <input matInput placeholder="Fazenda tão tão distante" formControlName="farmName">
+      <mat-error *ngIf="getControl('farmName').errors?.['required']">O nome da Fazenda é obrigatório!</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="row mt-2">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label>Cidade</mat-label>
+      <input matInput placeholder="Uberlândia" formControlName="city">
+      <mat-error *ngIf="getControl('city').errors?.['required']">A cidade é obrigatória!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col">
+      <mat-label>Estado</mat-label>
+      <input matInput placeholder="Minas Gerais" formControlName="state">
+      <mat-error *ngIf="getControl('state').errors?.['required']">O estado é obrigatório!</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="row mt-2">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label>Área total da fazenda</mat-label>
+      <input matInput type="number" placeholder="10" formControlName="farmTotalArea">
+      <span matTextSuffix>ha</span>
+      <mat-error *ngIf="getControl('farmTotalArea').errors?.['required']">A área total da fazenda é obrigatória!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col">
+      <mat-label>Área agricultável da Fazenda</mat-label>
+      <input matInput type="number" placeholder="6" formControlName="arableArea">
+      <span matTextSuffix>ha</span>
+      <mat-error *ngIf="getControl('arableArea').errors?.['required']">A área agricultável da fazenda é obrigatória!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col">
+      <mat-label>Área de vegetação da fazenda</mat-label>
+      <input matInput type="number" placeholder="4" formControlName="vegetationArea">
+      <span matTextSuffix>ha</span>
+      <mat-error *ngIf="getControl('vegetationArea').errors?.['required']">A área de vegetação da fazenda é obrigatória!</mat-error>
+    </mat-form-field>
+  </div>
+
+  <section [formGroup]="plantedCrops">
+    <h4>Culturas plantadas:</h4>
+    <div class="agroList">
+      <mat-checkbox formControlName="soy">Soja</mat-checkbox>
+      <mat-checkbox formControlName="corn">Milho</mat-checkbox>
+      <mat-checkbox formControlName="cotton">Algodão</mat-checkbox>
+      <mat-checkbox formControlName="coffee">Café</mat-checkbox>
+      <mat-checkbox formControlName="sugarCane">Cana de açucar</mat-checkbox>
+    </div>
+  </section>
+  <div class="row justify-content-center mt-4 mb-4">
+    <button mat-raised-button type="submit" class="col-2">Enviar</button>
+  </div>
+</form>
