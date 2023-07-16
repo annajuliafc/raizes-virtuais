@@ -9,6 +9,7 @@ import { RuralProducerModule } from './components/rural-producer/rural-producer.
 import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { ToastModule } from 'primeng/toast';
 import { DashboardModule } from './components/dashboard/dashboard.module';
 
 @NgModule({
@@ -22,7 +23,8 @@ import { DashboardModule } from './components/dashboard/dashboard.module';
     HttpClientModule,
     MatIconModule,
     ButtonModule,
-    TabMenuModule
+    TabMenuModule,
+    ToastModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

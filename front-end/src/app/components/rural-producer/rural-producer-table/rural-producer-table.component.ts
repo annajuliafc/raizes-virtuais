@@ -6,7 +6,7 @@ import {
 } from 'primeng/api';
 import { RuralProducer } from 'src/app/models/RuralProducer';
 import { RuralProducerService } from 'src/app/services/rural-producer.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-rural-producer-table',
@@ -21,38 +21,11 @@ export class RuralProducerTableComponent {
     private messageService: MessageService,
     private ruralProducerService: RuralProducerService,
     private confirmationService: ConfirmationService,
-    private router: Router,
-    private route: ActivatedRoute
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.ruralProducerSearch();
-  }
-
-  getState() {
-    let state: string | null;
-    this.route.paramMap.subscribe((params) => {
-      state = params.get('state');
-      this.stateAlert(state);
-    });
-  }
-
-  stateAlert(state: string | null) {
-    if (state == 'cadastrado') {
-      this.messageService.clear();
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Success',
-        detail: 'Produtor rural cadastrado com sucesso!',
-      });
-    } else if (state == 'editado') {
-      this.messageService.clear();
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Success',
-        detail: 'Produtor rural atualizado com sucesso!',
-      });
-    }
   }
 
   ruralProducerSearch() {
@@ -86,6 +59,11 @@ export class RuralProducerTableComponent {
       accept: () => {
         this.ruralProducerService.deleteRuralProducer(producer).subscribe({
           next: (response) => {
+            this.messageService.add({
+              severity: 'info',
+              summary: 'Confirmado',
+              detail: 'O produtor foi deletado com sucesso!',
+            });
             this.ruralProducerSearch();
           },
           error: (error) => {
@@ -95,14 +73,9 @@ export class RuralProducerTableComponent {
               severity: 'error',
               summary: 'Error',
               detail:
-                'Erro ao buscar os produtores rurais, recarregue a página ou tente novamente mais tarde!',
+                'Erro ao deletar o produtor rural, recarregue a página ou tente novamente mais tarde!',
             });
           },
-        });
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Confirmado',
-          detail: 'O produtor foi deletado com sucesso!',
         });
       },
       reject: (type: ConfirmEventType) => {

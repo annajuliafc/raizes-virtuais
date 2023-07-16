@@ -1,4 +1,5 @@
-import { CpfCnpjValidationDirective } from './directives/cpf-cnpj-validation.directive';
+import { CpfCnpjValidationDirective } from "./cpf-cnpj-validation.directive";
+
 
 describe('CpfCnpjValidationDirective', () => {
   it('should create an instance', () => {

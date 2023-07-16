@@ -1,4 +1,3 @@
-<p-toast></p-toast>
 <form (ngSubmit)="ruralProducerSubmit()" [formGroup]="ruralProducerForm">
   <div class="row">
     <mat-form-field appearance="outline" class="col-3">
@@ -41,12 +40,6 @@
       </mat-select>
       <mat-error *ngIf="ruralProducerForm.controls['state'].errors?.['required']">O estado é obrigatório!</mat-error>
     </mat-form-field>
-
-    <!-- <mat-form-field appearance="outline" class="col">
-      <mat-label>Estado</mat-label>
-      <input matInput formControlName="state" required>
-      <mat-error *ngIf="ruralProducerForm.controls['state'].errors?.['required']">O estado é obrigatório!</mat-error>
-    </mat-form-field> -->
   </div>
 
   <div class="row mt-2">

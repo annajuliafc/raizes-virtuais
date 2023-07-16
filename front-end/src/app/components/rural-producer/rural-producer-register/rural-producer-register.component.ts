@@ -18,7 +18,13 @@ export class RuralProducerRegisterComponent {
   newRuralProducer(event: any) {
     this.ruralProducerService.registerRuralProducer(event).subscribe({
       next: (response) => {
-        this.router.navigate(['/produtores', 'cadastrado']);
+        this.messageService.clear();
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Produtor rural cadastrado com sucesso!',
+        });
+        this.router.navigate(['/produtores']);
       },
       error: (error) => {
         this.messageService.clear();

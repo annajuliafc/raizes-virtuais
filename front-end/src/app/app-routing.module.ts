@@ -6,16 +6,15 @@ import { RuralProducerTableComponent } from './components/rural-producer/rural-p
 import { RuralProducerEditComponent } from './components/rural-producer/rural-producer-edit/rural-producer-edit.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent},
-  { path: 'dashboard', component: DashboardComponent},
-  { path: 'produtores/:state', component: RuralProducerTableComponent},
-  { path: 'produtores', component: RuralProducerTableComponent},
-  { path: 'cadastrar', component: RuralProducerRegisterComponent},
-  { path: 'editar/:id', component: RuralProducerEditComponent}
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'produtores', component: RuralProducerTableComponent },
+  { path: 'cadastrar', component: RuralProducerRegisterComponent },
+  { path: 'editar/:id', component: RuralProducerEditComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

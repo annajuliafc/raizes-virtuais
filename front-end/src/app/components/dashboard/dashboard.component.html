@@ -1,22 +1,22 @@
 <section class="dashboard" *ngIf="dashboardData; else progressSpinner">
   <div class="cards">
     <p-card subheader="Total de fazendas em quantidade" class="card">
-      <p class="m-0">{{ dashboardData.totalFarmersQuantity }}</p>
+      <p class="m-0">{{ dashboardData.totalFarmersQuantity }} ha</p>
     </p-card>
     <p-card subheader="Área total das fazendas" class="card">
-      <p class="m-0">{{ dashboardData.totalFarmArea }}</p>
+      <p class="m-0">{{ dashboardData.totalFarmArea }} ha</p>
     </p-card>
   </div>
 
   <div class="graphics">
     <p-card subheader="Quantidade de fazenda por estado">
-      <app-graphics [graphicData]="dashboardData.quantityFarmsPerState"></app-graphics>
+      <app-graphics [quantityFarmsPerState]="dashboardData.quantityFarmsPerState"></app-graphics>
     </p-card>
     <p-card subheader="Culturas plantadas">
-      <app-graphics [graphicData]="dashboardData.quantityFarmsPerCrop"></app-graphics>
+      <app-graphics [quantityFarmsPerCrop]="dashboardData.quantityFarmsPerCrop"></app-graphics>
     </p-card>
     <p-card subheader="Uso do solo">
-      <app-graphics [graphicData]="dashboardData"></app-graphics>
+      <app-graphics [dashboardData]="dashboardData"></app-graphics>
     </p-card>
   </div>
 </section>

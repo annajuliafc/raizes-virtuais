@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { RuralProducer } from 'src/app/models/RuralProducer';
@@ -52,7 +52,13 @@ export class RuralProducerEditComponent {
   editRuralProducer(event: any) {
     this.ruralProducerService.updateProducer(event).subscribe({
       next: (response) => {
-        this.router.navigate(['/produtores', 'editado']);
+        this.messageService.clear();
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Produtor rural atualizado com sucesso!',
+        });
+        this.router.navigate(['/produtores']);
       },
       error: (error) => {
         this.messageService.clear();
@@ -65,5 +71,4 @@ export class RuralProducerEditComponent {
       },
     });
   }
-
 }

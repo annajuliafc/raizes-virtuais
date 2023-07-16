@@ -20,15 +20,17 @@
 
 .mainPage {
   padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 
-  .tabMenu {
+  .menu {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
   .body {
-    padding: 2rem;
     display: flex;
     justify-content: center;
   }

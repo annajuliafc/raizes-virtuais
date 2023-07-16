@@ -20,7 +20,6 @@ export class DashboardComponent implements OnInit {
     this.searchDashboardData();
   }
 
-
   searchDashboardData() {
     this.dashboardService.getDashboardData().subscribe({
       next: (response) => {

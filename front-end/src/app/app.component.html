@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <header class="navigation">
   <h1><a routerLink="/">
       <mat-icon>forest</mat-icon>Raizes Virtuais
@@ -5,11 +6,12 @@
 </header>
 
 <main class="mainPage">
-  <div class="tabMenu">
-    <p-tabMenu [model]="items" [activeItem]="activeItem" (activeItemChange)="onActiveItemChange($event)">
+  <div class="menu">
+    <p-tabMenu [model]="items" [activeItem]="activeItem" (activeItemChange)="onActiveItemChange($event)" class="col">
     </p-tabMenu>
-    <p-button *ngIf="_router.url == '/produtores' || _router.url == '/produtores/:state'" label="Cadastrar" icon="pi pi-user-plus" iconPos="right"
-      routerLink="/cadastrar"></p-button>
+
+    <p-button *ngIf="_router.url == '/produtores'" label="Cadastrar" icon="pi pi-user-plus" iconPos="right"
+      routerLink="/cadastrar" class="col-auto"></p-button>
   </div>
   <div class="body">
     <router-outlet></router-outlet>

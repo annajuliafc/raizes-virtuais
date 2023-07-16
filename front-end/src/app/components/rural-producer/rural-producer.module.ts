@@ -17,7 +17,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
 //PrimeNG
-import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
@@ -39,13 +38,17 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
-    ToastModule,
     CheckboxModule,
     ButtonModule,
     TableModule,
     ProgressSpinnerModule,
   ],
-  exports: [RuralProducerEditComponent, RuralProducerRegisterComponent],
+  exports: [
+    RuralProducerEditComponent,
+    RuralProducerRegisterComponent,
+    RuralProducerFormComponent,
+    RuralProducerTableComponent,
+  ],
   providers: [MessageService, ConfirmationService],
 })
 export class RuralProducerModule {}
