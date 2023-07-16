@@ -13,12 +13,12 @@
       width: 32px;
       height: 32px;
       margin-right: 8px;
-      color: #367D7A;
+      color: var(--highlight-text-color);
     }
   }
 }
 
-main {
+.mainPage {
   padding: 0 32px;
 
   .tabMenu {

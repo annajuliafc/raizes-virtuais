@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { RuralProducerService } from 'src/app/services/rural-producer.service';
 
@@ -10,19 +11,14 @@ import { RuralProducerService } from 'src/app/services/rural-producer.service';
 export class RuralProducerRegisterComponent {
   constructor(
     private ruralProducerService: RuralProducerService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router
   ) {}
 
   newRuralProducer(event: any) {
     this.ruralProducerService.registerRuralProducer(event).subscribe({
       next: (response) => {
-        this.messageService.clear();
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail:
-            'Produtor rural cadastrado com sucesso!',
-        });
+        this.router.navigate(['/produtores', 'cadastrado']);
       },
       error: (error) => {
         this.messageService.clear();

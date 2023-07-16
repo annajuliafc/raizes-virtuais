@@ -3,71 +3,86 @@
   <div class="row">
     <mat-form-field appearance="outline" class="col-3">
       <mat-label>CPF / CNPJ</mat-label>
-      <input matInput id="username" formControlName="document"
-        cpfCnpjValidation (blur)="formatCpfCnpj()">
-      <mat-error *ngIf="getControl('document').errors?.['required']">O CPF ou CNPJ é obrigatório!</mat-error>
-      <mat-error *ngIf="getControl('document').errors?.['cpfCnpjValidation']">
+      <input matInput id="username" formControlName="document" cpfCnpjValidation (blur)="formatCpfCnpj()" required>
+      <mat-error *ngIf="ruralProducerForm.controls['document'].errors?.['required']">O CPF ou CNPJ é obrigatório!
+      </mat-error>
+      <mat-error *ngIf="ruralProducerForm.controls['document'].errors?.['cpfCnpjValidation']">
         CPF/CNPJ inválido.
       </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="col">
       <mat-label>Nome do produtor</mat-label>
-      <input matInput formControlName="name">
-      <mat-error *ngIf="getControl('name').errors?.['required']">O nome do produtor é obrigatório!</mat-error>
+      <input matInput formControlName="name" required>
+      <mat-error *ngIf="ruralProducerForm.controls['name'].errors?.['required']">O nome do produtor é obrigatório!
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="col">
       <mat-label>Nome da Fazenda</mat-label>
-      <input matInput formControlName="farmName">
-      <mat-error *ngIf="getControl('farmName').errors?.['required']">O nome da Fazenda é obrigatório!</mat-error>
+      <input matInput formControlName="farmName" required>
+      <mat-error *ngIf="ruralProducerForm.controls['farmName'].errors?.['required']">O nome da Fazenda é obrigatório!
+      </mat-error>
     </mat-form-field>
   </div>
 
   <div class="row mt-2">
     <mat-form-field appearance="outline" class="col">
       <mat-label>Cidade</mat-label>
-      <input matInput formControlName="city">
-      <mat-error *ngIf="getControl('city').errors?.['required']">A cidade é obrigatória!</mat-error>
+      <input matInput formControlName="city" required>
+      <mat-error *ngIf="ruralProducerForm.controls['city'].errors?.['required']">A cidade é obrigatória!</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="col">
-      <mat-label>Estado</mat-label>
-      <input matInput formControlName="state">
-      <mat-error *ngIf="getControl('state').errors?.['required']">O estado é obrigatório!</mat-error>
+      <mat-label>Estados</mat-label>
+      <mat-select formControlName="state" required>
+        <mat-option></mat-option>
+        <mat-option [value]="state.acronym" *ngFor="let state of states">{{ state.name }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="ruralProducerForm.controls['state'].errors?.['required']">O estado é obrigatório!</mat-error>
     </mat-form-field>
+
+    <!-- <mat-form-field appearance="outline" class="col">
+      <mat-label>Estado</mat-label>
+      <input matInput formControlName="state" required>
+      <mat-error *ngIf="ruralProducerForm.controls['state'].errors?.['required']">O estado é obrigatório!</mat-error>
+    </mat-form-field> -->
   </div>
 
   <div class="row mt-2">
     <mat-form-field appearance="outline" class="col">
       <mat-label>Área total da fazenda</mat-label>
-      <input matInput type="number" formControlName="farmTotalArea">
+      <input matInput type="number" formControlName="farmTotalArea" required>
       <span matTextSuffix>ha</span>
-      <mat-error *ngIf="getControl('farmTotalArea').errors?.['required']">A área total da fazenda é obrigatória!
+      <mat-error *ngIf="ruralProducerForm.controls['farmTotalArea'].errors?.['required']">A área total da fazenda é
+        obrigatória!
       </mat-error>
-      <mat-error *ngIf="getControl('farmTotalArea').errors?.['areaExceeded']"></mat-error>
+      <mat-error *ngIf="ruralProducerForm.controls['farmTotalArea'].errors?.['areaExceeded']"></mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="col">
-      <mat-label>Área agricultável da Fazenda</mat-label>
-      <input matInput type="number" formControlName="arableArea">
+      <mat-label>Área agricultável</mat-label>
+      <input matInput type="number" formControlName="arableArea" required>
       <span matTextSuffix>ha</span>
-      <mat-error *ngIf="getControl('arableArea').errors?.['required']">A área agricultável da fazenda é obrigatória!
+      <mat-error *ngIf="ruralProducerForm.controls['arableArea'].errors?.['required']">A área agricultável da fazenda é
+        obrigatória!
       </mat-error>
-      <mat-error *ngIf="getControl('arableArea').errors?.['areaExceeded']"></mat-error>
+      <mat-error *ngIf="ruralProducerForm.controls['arableArea'].errors?.['areaExceeded']"></mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="col">
-      <mat-label>Área de vegetação da fazenda</mat-label>
-      <input matInput type="number" formControlName="vegetationArea">
+      <mat-label>Área de vegetação</mat-label>
+      <input matInput type="number" formControlName="vegetationArea" required>
       <span matTextSuffix>ha</span>
-      <mat-error *ngIf="getControl('vegetationArea').errors?.['required']">A área de vegetação da fazenda é obrigatória!
+      <mat-error *ngIf="ruralProducerForm.controls['vegetationArea'].errors?.['required']">A área de vegetação da
+        fazenda é obrigatória!
       </mat-error>
-      <mat-error *ngIf="getControl('vegetationArea').errors?.['areaExceeded']"></mat-error>
+      <mat-error *ngIf="ruralProducerForm.controls['vegetationArea'].errors?.['areaExceeded']"></mat-error>
     </mat-form-field>
   </div>
 
-  <p *ngIf="getControl('farmTotalArea').errors?.['areaExceeded']" class="areaAlert">A soma de área agricultável e vegetação, não pode ser
+  <p *ngIf="ruralProducerForm.controls['farmTotalArea'].errors?.['areaExceeded']" class="areaAlert">A soma de área
+    agricultável e vegetação, não pode ser
     maior que a área total da fazenda!</p>
 
   <br>
@@ -75,11 +90,11 @@
   <section [formGroup]="plantedCrops" class="flex flex-column align-items-center">
     <h4>Culturas plantadas:</h4>
     <div class="agroList">
-      <p-checkbox value="soy" formControlName="soy" label="Soja"></p-checkbox>
-      <p-checkbox value="corn" formControlName="corn" label="Milho"></p-checkbox>
-      <p-checkbox value="cotton" formControlName="cotton" label="Algodão"></p-checkbox>
-      <p-checkbox value="coffee" formControlName="coffee" label="Café"></p-checkbox>
-      <p-checkbox value="sugarCane" formControlName="sugarCane" label="Cana de açucar"></p-checkbox>
+      <p-checkbox [binary]="true" value="soy" formControlName="soy" label="Soja"></p-checkbox>
+      <p-checkbox [binary]="true" value="corn" formControlName="corn" label="Milho"></p-checkbox>
+      <p-checkbox [binary]="true" value="cotton" formControlName="cotton" label="Algodão"></p-checkbox>
+      <p-checkbox [binary]="true" value="coffee" formControlName="coffee" label="Café"></p-checkbox>
+      <p-checkbox [binary]="true" value="sugarCane" formControlName="sugarCane" label="Cana de açucar"></p-checkbox>
     </div>
   </section>
 

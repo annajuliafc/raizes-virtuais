@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { RuralProducer } from 'src/app/models/RuralProducer';
 import { RuralProducerService } from 'src/app/services/rural-producer.service';
@@ -17,7 +17,8 @@ export class RuralProducerEditComponent {
   constructor(
     private messageService: MessageService,
     private route: ActivatedRoute,
-    private ruralProducerService: RuralProducerService
+    private ruralProducerService: RuralProducerService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -48,8 +49,21 @@ export class RuralProducerEditComponent {
     });
   }
 
-  newRuralProducer(event: any) {
-    console.log(event);
-    // this.ruralProducerService.registerRuralProducer()
+  editRuralProducer(event: any) {
+    this.ruralProducerService.updateProducer(event).subscribe({
+      next: (response) => {
+        this.router.navigate(['/produtores', 'editado']);
+      },
+      error: (error) => {
+        this.messageService.clear();
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail:
+            'Erro ao tentar atualizar um produtor rural, recarregue a página ou tente novamente mais tarde!',
+        });
+      },
+    });
   }
+
 }

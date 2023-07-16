@@ -8,6 +8,7 @@ import { RuralProducerEditComponent } from './components/rural-producer/rural-pr
 const routes: Routes = [
   { path: '', component: DashboardComponent},
   { path: 'dashboard', component: DashboardComponent},
+  { path: 'produtores/:state', component: RuralProducerTableComponent},
   { path: 'produtores', component: RuralProducerTableComponent},
   { path: 'cadastrar', component: RuralProducerRegisterComponent},
   { path: 'editar/:id', component: RuralProducerEditComponent}

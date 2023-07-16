@@ -1,0 +1,26 @@
+.dashboard {
+  margin: 2rem 0rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .cards {
+    display: flex;
+    gap: 2rem;
+
+    .card {
+      width: 50%;
+      
+      p {
+        font-size: 40px;
+      }
+    }
+
+  }
+
+  .graphics {
+    display: flex;
+    gap: 2rem;
+    flex-direction: row;
+  }
+}

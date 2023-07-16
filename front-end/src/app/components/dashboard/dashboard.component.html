@@ -1,1 +1,32 @@
-<p>dashboard works!</p>
+<section class="dashboard" *ngIf="dashboardData; else progressSpinner">
+  <div class="cards">
+    <p-card subheader="Total de fazendas em quantidade" class="card">
+      <p class="m-0">{{ dashboardData.totalFarmersQuantity }}</p>
+    </p-card>
+    <p-card subheader="Área total das fazendas" class="card">
+      <p class="m-0">{{ dashboardData.totalFarmArea }}</p>
+    </p-card>
+  </div>
+
+  <div class="graphics">
+    <p-card subheader="Quantidade de fazenda por estado">
+      <app-graphics [graphicData]="dashboardData.quantityFarmsPerState"></app-graphics>
+    </p-card>
+    <p-card subheader="Culturas plantadas">
+      <app-graphics [graphicData]="dashboardData.quantityFarmsPerCrop"></app-graphics>
+    </p-card>
+    <p-card subheader="Uso do solo">
+      <app-graphics [graphicData]="dashboardData"></app-graphics>
+    </p-card>
+  </div>
+</section>
+
+<ng-template #progressSpinner>
+  <div *ngIf="loading; else error">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+</ng-template>
+
+<ng-template #error>
+  <p>Erro ao buscar os produtores rurais, recarregue a página ou tente novamente mais tarde!</p>
+</ng-template>

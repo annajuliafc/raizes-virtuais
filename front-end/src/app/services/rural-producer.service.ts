@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class RuralProducerService {
-  urlApi = 'https://localhost:3000';
+  urlApi = 'http://localhost:3000';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -20,7 +20,7 @@ export class RuralProducerService {
     );
   }
 
-  updatelProducer(ruralProducer: RuralProducer): Observable<RuralProducer> {
+  updateProducer(ruralProducer: RuralProducer): Observable<RuralProducer> {
     return this.httpClient.put<RuralProducer>(
       this.urlApi + `/farmer/${ruralProducer.id}`,
       ruralProducer

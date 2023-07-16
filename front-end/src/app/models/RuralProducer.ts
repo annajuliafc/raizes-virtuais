@@ -1,4 +1,5 @@
 import { PlantedCrops } from "./PlantedCrops";
+import { States } from "./States";
 
 export interface RuralProducer {
   id: number;
@@ -6,7 +7,7 @@ export interface RuralProducer {
   name: string;
   farmName: string;
   city: string;
-  state: string;
+  state: States[];
   farmTotalArea: number;
   arableArea: number;
   vegetationArea: number;

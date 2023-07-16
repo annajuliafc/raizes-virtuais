@@ -4,11 +4,11 @@
     </a></h1>
 </header>
 
-<main>
+<main class="mainPage">
   <div class="tabMenu">
     <p-tabMenu [model]="items" [activeItem]="activeItem" (activeItemChange)="onActiveItemChange($event)">
     </p-tabMenu>
-    <p-button *ngIf="_router.url == '/produtores'" label="Cadastrar" icon="pi pi-user-plus" iconPos="right"
+    <p-button *ngIf="_router.url == '/produtores' || _router.url == '/produtores/:state'" label="Cadastrar" icon="pi pi-user-plus" iconPos="right"
       routerLink="/cadastrar"></p-button>
   </div>
   <div class="body">

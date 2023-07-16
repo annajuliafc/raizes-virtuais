@@ -14,11 +14,11 @@ import { RuralProducerTableComponent } from './rural-producer-table/rural-produc
 //Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
+import { MatSelectModule } from '@angular/material/select';
 
 //PrimeNG
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
@@ -30,7 +30,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     RuralProducerRegisterComponent,
     RuralProducerFormComponent,
     RuralProducerTableComponent,
-    CpfCnpjValidationDirective
+    CpfCnpjValidationDirective,
   ],
   imports: [
     CommonModule,
@@ -38,16 +38,14 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
+    MatSelectModule,
     ToastModule,
     CheckboxModule,
     ButtonModule,
     TableModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
   ],
-  exports: [
-    RuralProducerEditComponent,
-    RuralProducerRegisterComponent,
-  ],
-  providers: [MessageService],
+  exports: [RuralProducerEditComponent, RuralProducerRegisterComponent],
+  providers: [MessageService, ConfirmationService],
 })
 export class RuralProducerModule {}
