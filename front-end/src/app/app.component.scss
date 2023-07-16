@@ -1,16 +1,10 @@
 .navigation {
-  display: flex;
-  justify-content: space-between;
-  height: 15vh;
-  align-items: center;
-  padding: 64px 0 64px 32px;
+  padding: 40px 0 64px 32px;
 
   a {
     text-decoration: none;
-    font-family: 'Roboto', sans-serif;
     font-weight: 800;
-    letter-spacing: 0;
-    color: #20504F;
+    color: var(--primary-color);
     display: flex;
     font-size: 32px;
 
@@ -31,5 +25,11 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .body {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
   }
 }

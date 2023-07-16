@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { PrimeIcons, MenuItem } from 'primeng/api';
+import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,11 @@ import { PrimeIcons, MenuItem } from 'primeng/api';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  title: string = 'rural-producer-manager';
   items: MenuItem[] | undefined;
   activeItem: MenuItem | undefined;
+
+  constructor(public _router: Router) {}
 
   ngOnInit() {
     this.items = [

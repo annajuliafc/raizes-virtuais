@@ -1,0 +1,53 @@
+<p-toast></p-toast>
+<div class="card" *ngIf="ruralProducers; else progressSpinner">
+  <p-table [value]="ruralProducers">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="name" style="width: auto; font-size: 14px;">Nome <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="farmName" style="width: auto; font-size: 14px;">Nome da fazenda <p-sortIcon
+            field="farmName"></p-sortIcon>
+        </th>
+        <th pSortableColumn="state" style="width: auto; font-size: 14px;">Estado <p-sortIcon field="state"></p-sortIcon>
+        </th>
+        <th pSortableColumn="farmTotalArea" style="width: auto; font-size: 14px;">Área total da fazenda <p-sortIcon
+            field="farmTotalArea"></p-sortIcon>
+        </th>
+        <th pSortableColumn="arableArea" style="width: auto; font-size: 14px;">Área agricultável <p-sortIcon
+            field="arableArea"></p-sortIcon>
+        </th>
+        <th pSortableColumn="vegetationArea" style="width: auto; font-size: 14px;">Área de vegetação <p-sortIcon
+            field="arableArea"></p-sortIcon>
+        </th>
+        <th style="width:auto; font-size: 14px;"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-producer>
+      <tr>
+        <td>{{producer.name}}</td>
+        <td>{{producer.farmName}}</td>
+        <td>{{producer.state}}</td>
+        <td>{{producer.farmTotalArea}}</td>
+        <td>{{producer.arableArea}}</td>
+        <td>{{producer.vegetationArea}}</td>
+        <td>
+          <p-button icon="pi pi-search" styleClass="p-button-rounded p-button-success p-button-text" 
+            (click)="producerEdit(producer)"></p-button>
+          <p-button icon="pi pi-times" styleClass="p-button-rounded p-button-danger p-button-text"
+            (click)="producerDelete(producer)"></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+
+<ng-template #progressSpinner>
+  <div *ngIf="loading; else error">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+</ng-template>
+
+<ng-template #error>
+  <p>Erro ao buscar os produtores rurais, recarregue a página ou tente novamente mais tarde!</p>
+</ng-template>

@@ -8,7 +8,10 @@
   <div class="tabMenu">
     <p-tabMenu [model]="items" [activeItem]="activeItem" (activeItemChange)="onActiveItemChange($event)">
     </p-tabMenu>
-    <p-button label="cadstrar" icon="pi pi-user-plus" iconPos="right" routerLink="/Cadastrar"></p-button>
+    <p-button *ngIf="_router.url == '/produtores'" label="Cadastrar" icon="pi pi-user-plus" iconPos="right"
+      routerLink="/cadastrar"></p-button>
   </div>
-  <router-outlet></router-outlet>
+  <div class="body">
+    <router-outlet></router-outlet>
+  </div>
 </main>

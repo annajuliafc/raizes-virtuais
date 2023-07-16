@@ -1,47 +1,53 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
-import { RuralProducerComponent } from './rural-producer.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+//Directives
+import { CpfCnpjValidationDirective } from 'src/app/directives/cpf-cnpj-validation.directive';
+
+//Components
 import { RuralProducerEditComponent } from './rural-producer-edit/rural-producer-edit.component';
 import { RuralProducerRegisterComponent } from './rural-producer-register/rural-producer-register.component';
 import { RuralProducerFormComponent } from './rural-producer-form/rural-producer-form.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { CpfCnpjValidationDirective } from 'src/app/directives/cpf-cnpj-validation.directive';
+import { RuralProducerTableComponent } from './rural-producer-table/rural-producer-table.component';
+
+//Angular Material
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 
 //PrimeNG
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { RuralProducerTableComponent } from './rural-producer-table/rural-producer-table.component';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
-    RuralProducerComponent,
     RuralProducerEditComponent,
     RuralProducerRegisterComponent,
     RuralProducerFormComponent,
-    CpfCnpjValidationDirective,
     RuralProducerTableComponent,
+    CpfCnpjValidationDirective
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MatCheckboxModule,
-    MatIconModule,
     MatInputModule,
     MatFormFieldModule,
-    MatButtonModule,
-    ToastModule
+    ToastModule,
+    CheckboxModule,
+    ButtonModule,
+    TableModule,
+    ProgressSpinnerModule
   ],
   exports: [
-    RuralProducerComponent,
     RuralProducerEditComponent,
     RuralProducerRegisterComponent,
   ],
-  providers: [ MessageService ],
+  providers: [MessageService],
 })
 export class RuralProducerModule {}

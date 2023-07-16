@@ -33,7 +33,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
     MatInputModule,
     HttpClientModule,
     ButtonModule,
-    TabMenuModule
+    TabMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
