@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url      = "file:./dev.db"
 }
 
 model Farmer {
@@ -20,7 +20,7 @@ model Farmer {
   farmTotalArea  Int
   arableArea     Int
   vegetationArea Int
-  plantedCrops   Crop     @relation(fields: [cropId], references: [id],  onUpdate: Cascade, onDelete: Cascade)
+  plantedCrops   Crop     @relation(fields: [cropId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   createdAt      DateTime @default(now())
   updatedAt      DateTime @default(now()) @updatedAt
   cropId         Int
@@ -30,11 +30,11 @@ model Farmer {
 
 model Crop {
   id        Int      @id @default(autoincrement())
-  sugarCane Boolean?
-  soy       Boolean?
-  corn      Boolean?
-  cotton    Boolean?
-  coffee    Boolean?
+  sugarCane Boolean? @default(false)
+  soy       Boolean? @default(false)
+  corn      Boolean? @default(false)
+  cotton    Boolean? @default(false)
+  coffee    Boolean? @default(false)
   Farmer    Farmer[]
 
   @@map("crops")

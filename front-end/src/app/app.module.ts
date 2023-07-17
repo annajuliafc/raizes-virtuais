@@ -11,7 +11,7 @@ import { ButtonModule } from 'primeng/button';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { ToastModule } from 'primeng/toast';
 import { DashboardModule } from './components/dashboard/dashboard.module';
-
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -25,6 +25,7 @@ import { DashboardModule } from './components/dashboard/dashboard.module';
     ButtonModule,
     TabMenuModule,
     ToastModule,
+    ConfirmDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],

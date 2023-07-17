@@ -19,9 +19,37 @@ class FarmersController {
         }
       })
       .catch((err) => {
-        req.status(404).json({
+        res.status(500).json({
           exception: `${err}`,
-          message: "Nenhum produtor foi encontrado!",
+          message: "Ocorreu um erro ao buscar os produtores, por favor tente novamente mais tarde!",
+        });
+      });
+  };
+
+  static getFarmerPerId = async (req, res) => {
+    const farmerId = parseInt(req.params.id);
+    await prisma.farmer
+      .findUnique({
+        where: {
+          id: farmerId,
+        },
+        include: {
+          plantedCrops: true,
+        },
+      })
+      .then((result) => {
+        if (result != null) {
+          res.status(200).json(result);
+        } else {
+          res.status(404).json({
+            message: `Nenhum produtor foi encontrado!`,
+          });
+        }
+      })
+      .catch((err) => {
+        res.status(500).json({
+          exception: `${err}`,
+          message: "Ocorreu um erro ao buscar os produtores, por favor tente novamente mais tarde!",
         });
       });
   };
@@ -30,40 +58,49 @@ class FarmersController {
     const farmerData = req.body;
     const cropData = farmerData.plantedCrops;
 
-    await prisma.farmer
-      .create({
-        data: {
-          document: farmerData.document,
-          name: farmerData.name,
-          farmName: farmerData.farmName,
-          city: farmerData.city,
-          state: farmerData.state,
-          farmTotalArea: farmerData.farmTotalArea,
-          arableArea: farmerData.arableArea,
-          vegetationArea: farmerData.vegetationArea,
-          plantedCrops: {
-            create: {
-              sugarCane: cropData.sugarCane,
-              soy: cropData.soy,
-              corn: cropData.corn,
-              cotton: cropData.cotton,
-              coffee: cropData.coffee,
+    if (
+      farmerData.farmTotalArea <
+      farmerData.arableArea + farmerData.vegetationArea
+    ) {
+      res.status(500).json({
+        message: `Area total deve ser maior que a soma da Area de Vegetação e Area Agricultavel!`,
+      });
+    } else {
+      await prisma.farmer
+        .create({
+          data: {
+            document: farmerData.document,
+            name: farmerData.name,
+            farmName: farmerData.farmName,
+            city: farmerData.city,
+            state: farmerData.state,
+            farmTotalArea: farmerData.farmTotalArea,
+            arableArea: farmerData.arableArea,
+            vegetationArea: farmerData.vegetationArea,
+            plantedCrops: {
+              create: {
+                sugarCane: cropData.sugarCane,
+                soy: cropData.soy,
+                corn: cropData.corn,
+                cotton: cropData.cotton,
+                coffee: cropData.coffee,
+              },
             },
           },
-        },
-        include: {
-          plantedCrops: true,
-        },
-      })
-      .then((result) => {
-        res.status(201).json(result);
-      })
-      .catch((err) => {
-        res.status(500).json({
-          exception: `${err}`,
-          message: `Ocorreu um erro ao cadastrar o produtor, por favor tente novamente mais tarde!`,
+          include: {
+            plantedCrops: true,
+          },
+        })
+        .then((result) => {
+          res.status(201).json(result);
+        })
+        .catch((err) => {
+          res.status(500).json({
+            exception: `${err}`,
+            message: `Ocorreu um erro ao cadastrar o produtor, por favor tente novamente mais tarde!`,
+          });
         });
-      });
+    }
   };
 
   static updateFarmer = async (req, res) => {
@@ -93,7 +130,7 @@ class FarmersController {
             },
           },
         },
-        
+
         include: {
           plantedCrops: true,
         },
@@ -104,7 +141,7 @@ class FarmersController {
       .catch((err) => {
         res.status(500).json({
           exception: `${err}`,
-          message: `Ocorreu um erro ao cadastrar o produtor, por favor tente novamente mais tarde!`,
+          message: `Ocorreu um erro ao atualizar o produtor, por favor tente novamente mais tarde!`,
         });
       });
   };
@@ -115,13 +152,13 @@ class FarmersController {
       .delete({ where: { id: farmerId } })
       .then(() => {
         res.status(200).json({
-          message: `Produtor rural deletado com sucesso!`,
+          message: `Produtor rural excluído com sucesso!`,
         });
       })
       .catch((err) => {
         res.status(500).json({
           exception: `${err}`,
-          message: `Ocorreu um erro ao cadastrar o produtor, por favor tente novamente mais tarde!`,
+          message: `Ocorreu um erro ao excluir o produtor, por favor tente novamente mais tarde!`,
         });
       });
   };

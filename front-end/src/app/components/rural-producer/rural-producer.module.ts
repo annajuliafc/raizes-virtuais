@@ -22,7 +22,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-
+import { RuralProducerService } from 'src/app/services/rural-producer.service';
+import { ActivatedRoute, Router } from '@angular/router';
 @NgModule({
   declarations: [
     RuralProducerEditComponent,
@@ -49,6 +50,12 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     RuralProducerFormComponent,
     RuralProducerTableComponent,
   ],
-  providers: [MessageService, ConfirmationService],
+  providers: [
+    RuralProducerService,
+    MessageService,
+    ConfirmationService,
+    ActivatedRoute,
+    Router,
+  ],
 })
 export class RuralProducerModule {}
