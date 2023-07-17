@@ -53,9 +53,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   providers: [
     RuralProducerService,
     MessageService,
-    ConfirmationService,
-    ActivatedRoute,
-    Router,
+    ConfirmationService
   ],
 })
 export class RuralProducerModule {}
