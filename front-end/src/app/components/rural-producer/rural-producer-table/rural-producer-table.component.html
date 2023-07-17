@@ -1,5 +1,5 @@
-<div class="card" *ngIf="ruralProducers; else progressSpinner">
-  <p-table [value]="ruralProducers">
+<div *ngIf="ruralProducers; else progressSpinner">
+  <p-table [value]="ruralProducers" class="card">
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="name" style="width: auto; font-size: 14px;">Nome <p-sortIcon field="name"></p-sortIcon>

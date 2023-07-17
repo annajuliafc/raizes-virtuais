@@ -10,7 +10,7 @@ import {
   AbstractControl,
   FormControl,
   FormGroup,
-  ValidatorFn
+  ValidatorFn,
 } from '@angular/forms';
 import { RuralProducer } from 'src/app/models/RuralProducer';
 import { MessageService } from 'primeng/api';
@@ -154,10 +154,7 @@ export class RuralProducerFormComponent implements OnChanges {
           arableArea + vegetationArea < farmTotalArea ||
           (farmTotalAreaControl.value.length > 0 &&
             arableAreaControl.value.length > 0 &&
-            vegetationAreaControl.value.length > 0) ||
-          farmTotalAreaControl.value.length == 0 ||
-          arableAreaControl.value.length == 0 ||
-          vegetationAreaControl.value.length == 0
+            vegetationAreaControl.value.length > 0)
         ) {
           farmTotalAreaControl.setErrors(null);
           arableAreaControl.setErrors(null);

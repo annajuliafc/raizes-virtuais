@@ -55,12 +55,13 @@ export class RuralProducerTableComponent {
     this.confirmationService.confirm({
       message: 'Tem certeza que deseja excluir esse produtor?',
       header: 'Confirmação de exclusão',
-      icon: 'pi pi-info-circle',
+      acceptLabel: 'Confirmar',
+      rejectLabel: 'Cancelar',
       accept: () => {
         this.ruralProducerService.deleteRuralProducer(producer).subscribe({
           next: (response) => {
             this.messageService.add({
-              severity: 'info',
+              severity: 'sucess',
               summary: 'Confirmado',
               detail: 'O produtor foi deletado com sucesso!',
             });
